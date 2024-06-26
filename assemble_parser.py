@@ -6,8 +6,12 @@ import os
 import json
 
 input_program = sys.argv[1]
+json_file = sys.argv[2]
 
-directory = "/tmp/openrisc/src"
+with open(json_file, 'r') as j_file:
+    json_data = json.load(j_file)
+
+directory = json_data["or1k_directory"]
 
 subprocess.run(['or1k-elf-gcc', input_program, '-o', 'output'], cwd=directory, text=True)
 
