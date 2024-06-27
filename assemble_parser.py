@@ -5,16 +5,28 @@ import csv
 import os
 import json
 
-input_program = sys.argv[1]
-json_file = sys.argv[2]
+#read in json file
+json_file = sys.argv[1]
 
 with open(json_file, 'r') as j_file:
     json_data = json.load(j_file)
 
-directory = json_data["or1k_directory"]
+print(json_data)
 
+input_program = json_data["input_program"]
+directory = json_data["or1k_directory"]
+counter_number = json_data["counter_number"]
+
+counter_arr = []
+for i in range(1, counter_number+1):
+    key = f'counter_{i}'
+    counter_arr.append(json_data[key])
+
+print(counter_arr)
+#use run input program on or1k
 subprocess.run(['or1k-elf-gcc', input_program, '-o', 'output'], cwd=directory, text=True)
 
+#dump to output file
 objdump_command = ['or1k-elf-objdump', '-d', 'output']
 output_file_path = os.path.join(directory, 'new_output.txt')
 
@@ -34,6 +46,7 @@ commands_dict = {
     "lf.itof.s": 0, "lf.ftoi.s": 0, "lf.mov.s": 0, "l.lbz": 0, "l.sfne": 0,"l.sfnei": 0, "l.sfeq": 0,"l.sfeqi": 0, "lwz": 0,"l.lbs": 0
 }
 
+#create counter dict for all commands
 counter_dict = {}
 
 with open(output_file_path, 'r') as file:

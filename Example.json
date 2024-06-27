@@ -1,3 +1,35 @@
 {
-  "or1k_directory": "/tmp/openrisc/src"
+
+  "input_program": "example.c",
+  "or1k_directory": "/tmp/openrisc/src",
+  "counter_number": 4,
+  
+  "counter_1":{
+                "name":"ALU_counter" ,
+                "component_to_track": "ALU",
+                "increment_value": 1,
+                "weight": 3
+              },
+
+  "counter_2":{
+                "name":"IF_counter" ,
+                "component_to_track": "instruction_fetch",
+                "increment_value": 1,
+                "weight": 2
+              },
+
+  "counter_3":{
+                "name":"ID_counter" ,
+                "component_to_track": "instruction_decode",
+                "increment_value": 1,
+                "weight": 1
+              },
+
+  "counter_4":{
+                "name":"PC_counter" ,
+                "component_to_track": "program_counter",
+                "increment_value": 1,
+                "weight": 0.5
+              }
+
 }
