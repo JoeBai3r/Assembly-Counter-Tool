@@ -1,8 +1,8 @@
 {
-
-  "input_program": "example.c",
+  "input_programs": ["example.c", "test1.c"],
   "or1k_directory": "/tmp/openrisc/src",
-  "counter_number": 4,
+  "counter_number": 5,
+  
   
   "counter_1":{
                 "name":"ALU_counter" ,
@@ -30,6 +30,13 @@
                 "component_to_track": "program_counter",
                 "increment_value": 1,
                 "weight": 0.5
+              },
+
+  "counter_5":{
+                "name":"MMU_counter" ,
+                "component_to_track": "memory_management_unit",
+                "increment_value": 1,
+                "weight": 3
               }
 
 }
